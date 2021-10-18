@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Responsavel;
 
-class PessoaController extends Controller
+class ResponsavelController extends Controller
 {
-    public function create_pessoa(){
-        return view('pessoa');
+    public function create_responsavel(){
+        return view('responsavel');
     }
 
     public function store(Request $request){

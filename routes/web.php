@@ -4,13 +4,16 @@ use Illuminate\Support\Facades\Route;
 
 
 
-//Route::get('/', function () {
+Route::get('/', function () {
    // return view('welcome');
   
-//});
+});
 
-Route:: get('/pessoa','PessoaController@create_pessoa');
-Route:: post('/pessoa','PessoaController@store')->name('registrar_pessoa');
+
+
+Route:: get('/responsavel','ResponsavelController@create_responsavel');
+Route:: post('/responsavel','ResponsavelController@store')->name('registrar_responsavel');
 Route:: get('/estabelecimento','EstabelecimentoController@create');
-Route:: post('/estabelecimento','EstabelecimentoController@create')->name('registrar_estabelecimento');
-Route:: get('/foto','FotoController@create');
+Route:: post('/estabelecimento','EstabelecimentoController@store')->name('registrar_estabelecimento');
+Route:: get('/foto','FotoController@fileupload');
+Route:: post('/foto','FotoController@fileupload')->name('foto_estabelecimento');
