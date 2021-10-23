@@ -5,7 +5,7 @@
     <meta charset="utf-8">
   </head>
   <body>
-    <form action = "{{route('registrar_estabelecimento')}}" method = "POST">
+    <form action = "{{route('app.registrar_estabelecimento')}}" method = "POST">
      @csrf
     <label for="">Nome</label><br/>
     <input type="text" name = "nome"><br/>

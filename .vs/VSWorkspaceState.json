@@ -1,0 +1,17 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\resources",
+    "\\resources\\lang",
+    "\\storage",
+    "\\storage\\framework",
+    "\\storage\\framework\\cache",
+    "\\storage\\framework\\cache\\data",
+    "\\storage\\framework\\sessions",
+    "\\storage\\framework\\testing",
+    "\\storage\\framework\\views",
+    "\\tests"
+  ],
+  "SelectedNode": "\\storage\\framework",
+  "PreviewInSolutionExplorer": false
+}

@@ -7,6 +7,11 @@ use App\Models\Responsavel;
 
 class ResponsavelController extends Controller
 {
+   // public function __construct()
+   // {
+   //    $this->middleware('log.acesso'); 
+   // }
+
     public function create_responsavel(){
         return view('responsavel');
     }

@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 class FotoController extends Controller
 {
+   // public function __construct()
+  //  {
+  //     $this->middleware('log.acesso'); 
+   // }
     public function fileupload(Request $request){
         $validate = $request->validate(
             [
