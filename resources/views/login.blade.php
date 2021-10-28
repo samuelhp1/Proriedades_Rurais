@@ -1,10 +1,10 @@
 
-
-
-
         <div class="informacao-pagina">
+            <ul>
+                <li><a href="{{route('cadastrar')}}" >Cadastrar Usuario final</a></li>
+            </ul>
             <div style="width:30%; margin-left: auto; margin-right: auto;">
-                <form action={{ route('logar') }} method="post">
+                <form action={{route('logar')}} method="post">
                     @csrf
                     <input name="usuario" value="{{old('usuario')}}" type="text" placeholder="Usuário" >
                     {{$errors->has('usuario') ? $errors->first('usuario') : '' }}

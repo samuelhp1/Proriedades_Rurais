@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Schema;
 
 class Usuario extends Migration
 {
+    
+
     // sempre rodar o php artisan migrate ao criar novo migration
     public function up()
     {

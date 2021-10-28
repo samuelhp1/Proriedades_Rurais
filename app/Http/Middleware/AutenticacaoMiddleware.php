@@ -8,9 +8,25 @@ use Illuminate\Http\Request;
 class AutenticacaoMiddleware
 {
     
-    public function handle(Request $request, Closure $next, $metodo_autenticacao)
+    public function handle(Request $request, Closure $next)
     {
+
+       session_start();
+
+       if(isset($_SESSION['login']) && $_SESSION['login'] !=''){
+
+           return $next( $request);
+       }else{
+           return redirect()->route('logar',['erro' => 2]);
+       }
+
+
+
+
+
+        /*
         //vereficar se o usuario possui permissão
+
         if($metodo_autenticacao == 'padrao'){
 
             echo 'verificar login e senha no banco';
@@ -19,6 +35,6 @@ class AutenticacaoMiddleware
  
             echo 'verificar login e senha no AD';
         }
-        
+        */
     }
 }

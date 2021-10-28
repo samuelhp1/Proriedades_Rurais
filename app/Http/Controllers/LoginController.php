@@ -3,14 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\login;
+use App\Models\Login;
 
 class LoginController extends Controller
 {
-   //public function __construct()
-  // {
-    //  $this->middleware('log.acesso'); 
-  // }
+  
 
     public function index(Request $request){
 
@@ -19,6 +16,10 @@ class LoginController extends Controller
 
       if($request->get('erro') == 1 ){
          $erro = 'Usuario e ou senha não existe';
+      };
+
+      if($request->get('erro') == 2 ){
+         $erro = 'Nessesario relizar logim para entrar na pagina';
       };
       //aqui mostro o erro
        return view('login',['titulo' => 'Login','erro' => $erro]);
@@ -36,34 +37,37 @@ class LoginController extends Controller
         'usuario.email' => 'o campo do usuario e obrigatorio',
         'senha.required' => 'o campo senha e obrigatorio'
        ]; 
+
         // se n passar
         $request->validate( $regras,$mesagens);
-        
-         //print_r( $request->all());
        
        //pego o usuario da view
        $email =  $request->get('usuario');
 
        $password = $request->get('senha');
-       
-       $user = new login();
+      
+       $user = new Login();
        
        //get retorna a coleção // o first retorna 1 unico objeto
        $usuario = $user->where('login',$email)->where('senha',$password)->get()->first();
-       
+        
        if(isset($usuario->login)){
-            session_start();
-            $_SESSION['nome'] = $usuario->login;
 
-            return redirect()->route('estabelecimento');
+            session_start();
+            $_SESSION['login'] = $usuario->login;
+
+            return redirect()->route('app.home');
             
        }else{
           //redireciona para logim e passa um erro
         return redirect()->route('logar',['erro'=> 1]);
        }
-       //echo '<pre>';
-       //print_r( $existe);
-      // echo '<pre>';
+      
    }
+
+    public function sair(){
+     session_destroy();
+     return redirect()->route('logar');
+    }
 }
 

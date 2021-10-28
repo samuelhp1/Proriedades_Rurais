@@ -19,25 +19,7 @@ class EstabelecimentoController extends Controller
     }
 
     public function store(Request $request){
-        /* 
-        $estabelecimento = new Estabelecimento();
-        $estabelecimento->nome = $request->nome;
-        $estabelecimento->cnpj = $request->cnpj;
-        $estabelecimento->endereco = $request->endereco;
-        $estabelecimento->telefone = $request->telefone;
-        $estabelecimento->celular = $request->celular;
-        $estabelecimento->whatsapp = $request->whatsapp;
-        $estabelecimento->servicos = $request->servicos;
-        $estabelecimento->data_inauguracao = $request->data_inauguracao;
-        $estabelecimento->diferencial = $request->diferencial;
-        $estabelecimento->proposta_trabalho = $request->proposta_trabalho;
-        $estabelecimento->publico_alvo = $request->publico_alvo;
-        echo '<pre>';
-        print_r($request->all());
-        echo '<pre>';
-        $estabelecimento->save();
-
-        */
+      
        Estabelecimento::create([
             'nome'=> $request->nome,
             'cnpj'=> $request->cnpj,
@@ -57,6 +39,9 @@ class EstabelecimentoController extends Controller
     }
 
     public function salvar(Request $request){
+
+        //criação  id recebido seja nulo
+        if($request->input('id') == ''){
         $regras = [
             'nome'=> 'required|min:3|max:40',
             'cnpj'=> 'required',
@@ -75,5 +60,21 @@ class EstabelecimentoController extends Controller
         ];
         $request->validate($regras,$feedback);
         Estabelecimento:: create($request->all());
+        }
+        
+        //edição o id recebido não e nulo
+        if($request->input('id') != ''){
+            //eu pego o id que ja esiste para atualizar
+           $estabelecimento = Estabelecimento:: find($request->input('id'));
+           //tudo recuperado em cima e atualizado aqui
+           $update = $estabelecimento->update($request->all());
+
+           if($update){
+               echo 'Update realizado';
+           }else{
+            echo 'Update não realizado';
+           }
+        }
+        return view('estabelecimento');
     }
 }
