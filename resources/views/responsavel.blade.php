@@ -26,6 +26,5 @@
       @endforeach
    @endif
 
-
   </body>
 </html>

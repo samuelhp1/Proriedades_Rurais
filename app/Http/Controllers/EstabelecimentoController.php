@@ -60,8 +60,8 @@ class EstabelecimentoController extends Controller
         ];
         $request->validate($regras,$feedback);
         Estabelecimento:: create($request->all());
+        echo 'tika';
         }
-        
         //edição o id recebido não e nulo
         if($request->input('id') != ''){
             //eu pego o id que ja esiste para atualizar
@@ -75,6 +75,22 @@ class EstabelecimentoController extends Controller
             echo 'Update não realizado';
            }
         }
-        return view('estabelecimento');
+        return view('home');
+    }
+
+    public function editar($id){
+
+        $estabelecimento = Estabelecimento::find($id);
+
+        //dd($estabelecimento);
+       //pego id e todo resto e passo para a view estabelecimento
+        return view('estabelecimento',['estabelecimento'=>$estabelecimento]);
+    }
+    public function excluir($id){
+
+      Estabelecimento:: find($id)->delete();
+
+      return redirect()->route('app.home');
+
     }
 }

@@ -11,6 +11,8 @@ class CreateLogAcessosTable extends Migration
      *
      * @return void
      */
+    
+
     public function up()
     {
         Schema::create('log_acessos', function (Blueprint $table) {

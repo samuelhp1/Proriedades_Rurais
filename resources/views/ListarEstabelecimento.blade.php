@@ -20,19 +20,23 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($estabelecimento as $estabelecimento )
+                @foreach ($estabelecimento as $estabelecimentos )
                   <tr>
-                    <th>{{$estabelecimento -> nome}}</th>
-                    <th>{{$estabelecimento -> endereco}}</th>
-                    <th>{{$estabelecimento -> proposta_trabalho}}</th>
-                    <th>{{$estabelecimento -> publico_alvo}}</th>
-                    <th>Excluir</th>
-                    <th><a href="{{route('app.editar_estabelecimento',$estabelecimento->id)}}">Editar</th>
+                    <th>{{$estabelecimentos -> nome}}</th>
+                    <th>{{$estabelecimentos -> endereco}}</th>
+                    <th>{{$estabelecimentos -> proposta_trabalho}}</th>
+                    <th>{{$estabelecimentos -> publico_alvo}}</th>
+                    <th><a href="{{route('app.excluir_estabelecimento', $estabelecimentos->id)}}">Excluir</a></th>
+                    <th><a href="{{route('app.editar_estabelecimento', $estabelecimentos->id)}}">Editar</a></th>
                 </tr>      
                 @endforeach
              <tbody>
         </table> 
-            </div>
+            </div>   
        </div>
+       <!-- Para uma paginação o nome das variaveis do foreach tem que ser diferentes -->
+       <!-- passo o appends que pega o requests do listar para o resultado da paginação n~~ao se perdeder durante a pesquisa -->
+       {{$estabelecimento->appends($request)->links()}}
+       
   </body>
 </html>

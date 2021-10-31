@@ -16,9 +16,11 @@ class PesquisarEstabelecimentoController extends Controller
      $estabelecimento = Estabelecimento::where('nome','like','%'.$request->input('nome').'%')->
      where('endereco','like','%'.$request->input('endereco').'%')->
      where('proposta_trabalho','like','%'.$request->input('proposta_trabalho').'%')->
-     where('publico_alvo','like','%'.$request->input('publico_alvo').'%')->get();
+     where('publico_alvo','like','%'.$request->input('publico_alvo').'%')->simplePaginate(1);
+     //paginate server para dividir em quantas respostas desejo retornar
 
-     return view('ListarEstabelecimento',['estabelecimento' => $estabelecimento]); 
+        //passo para view estabeleciemnto o array de estabeleciemnto e  o requests para apginação não se perder na pesquisa
+     return view('ListarEstabelecimento',['estabelecimento' => $estabelecimento, 'request'=>$request->all()]); 
     }
 
 }

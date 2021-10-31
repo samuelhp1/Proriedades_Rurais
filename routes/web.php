@@ -33,16 +33,21 @@ Route::get('/home','HomeController@index')->name('app.home');
  
 Route::get('/sair','LoginController@sair') ->name('app.sair');
 
-Route::get('/responsavel','ResponsavelController@create_responsavel')->name('app.registrar_responsavel');
+Route::get('/responsavel','ResponsavelController@create_responsavel');
 Route::post('/responsavel','ResponsavelController@store')->name('app.registrar_responsavel');
 
-Route::get('/estabelecimento','EstabelecimentoController@create')->name('app.registrar_estabelecimento');
+Route::get('/estabelecimento','EstabelecimentoController@create');
 Route::post('/estabelecimento','EstabelecimentoController@salvar')->name('app.registrar_estabelecimento');
+Route::get('/editar/{id}','EstabelecimentoController@editar')->name('app.editar_estabelecimento');
+Route::get('/excluir/{id}','EstabelecimentoController@excluir')->name('app.excluir_estabelecimento');
 
 Route::get('/pesquisar','PesquisarEstabelecimentoController@index')->name('app.pesquisar_estabelecimento');
 Route::post('/pesquisar','PesquisarEstabelecimentoController@post')->name('app.pesquisar_estabelecimento');
+//para usar o paginate tenho que criar o get do listar tmb
+Route::get('/pesquisar','PesquisarEstabelecimentoController@post')->name('app.pesquisar_estabelecimento');
 
-Route::get('/editar/{id}','EditarEstabelecimento@editar')->name('app.editar_estabelecimento');
+
+
 
 //Route:: post('/estabelecimento','EstabelecimentoController@salvar')->name('registrar_estabelecimento');
 Route::get('/foto','FotoController@fileupload')->name('app.foto_estabelecimento');

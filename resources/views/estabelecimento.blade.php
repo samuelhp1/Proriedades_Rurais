@@ -1,18 +1,17 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+
   <head>
     <title>Cadastro de estabelecimento</title>
     <meta charset="utf-8">
   </head>
   <body>
-   {{$msg ?? ''}}
     <form action = "{{route('app.registrar_estabelecimento')}}" method = "POST">
     <!–- aqui pego o id do estabelecimento para que possa ser passado para o id do create, caso não exista e passado nullo-–>
-    <input type="hiden" name="id" value="{{$fornecedor->id ?? ''}}">
      @csrf
+     <!–- sempre olhar o nome do valor a ser passado-–>
+    <input type="hidden" value="{{$estabelecimento->id ?? ''}}" name="id" >
+     <!–- aqui pego o estabelecimento vindo do editar e passo o campo de retorno-–>
     <label for="">Nome</label><br/>
-    <!–- aqui pego o estabelecimento vindo do editar e passo o campo de retorno-–>
-    <input type="text" value="{{$estabelecimento->nome ?? old('nome')}}" name = "nome"><br/>
+    <input type="text" value="{{$estabelecimento->nome ?? old ('nome')}}" name = "nome"><br/>
     <label for="">CNPJ</label><br/>
     <input type="text" value="{{$estabelecimento->cnpj ?? old('cnpj')}}" name = "cnpj"><br/>
     <label for="">Endereco</label><br/>
@@ -36,4 +35,3 @@
     <button>Salvar</button>
     </form>
   </body>
-</html>
